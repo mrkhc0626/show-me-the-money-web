@@ -11,7 +11,7 @@ import {
 } from "@/types/balanceSheet";
 
 const useBalanceSheet = () => {
-  const [data, setData] = useState<BalanceSheetData[]>([]);
+  const [data, setData] = useState<BalanceSheetData[] | null>(null);
   const fetchBalanceSheet = async () => {
     try {
       const url = `${API_HOST}/api/v1/balance-sheet`;
@@ -50,7 +50,8 @@ const useBalanceSheet = () => {
   }, [data]);
 
   const formattedDataMemo = useMemo(() => {
-    if (!data || data.length === 0) return [];
+    if (!data) return null
+    if (data.length === 0) return [];
     if (!columns || columns.length === 0) return [];
 
     const columnsLen = columns?.length;

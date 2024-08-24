@@ -9,7 +9,9 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center p-24 gap-12">
       <h1>Show Me the Money Balance Sheet</h1>
 
-      {columns.length > 0 && (
+      {!data && <p>Loading data...</p>}
+      
+      {data && columns.length > 0 && (
         <CustomTable
           label="balance-sheet-table"
           columns={columns}
